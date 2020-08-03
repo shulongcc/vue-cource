@@ -6,20 +6,27 @@ export default [
     // 别名
     alias: '/home_page',
     name: 'Home',
-    component: Home
+    component: Home,
+    // 函数模式传值
+    props: route => ({
+      food: route.query.food
+    })
   },
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import('../views/About.vue'),
+    // 对象模式动态传值
+    props: {
+      food: 'banana'
+    }
   },
   // 动态路由匹配
   {
     path: '/argu/:name',
-    component: () => import('@/views/argu.vue')
+    component: () => import('@/views/argu.vue'),
+    // 动态传值
+    props: true
   },
   // 嵌套路由
   {

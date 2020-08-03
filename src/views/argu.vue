@@ -1,13 +1,18 @@
 <template>
   <div>
-    测试
-    {{ $route.params.name }}
+    <!-- {{ $route.params.name }} -->
+    {{name}}
   </div>
 </template>
 
 <script>
 export default {
-  //
+  props: {
+    name: {
+      type: [String, Number],
+      default: '默认'
+    }
+  }
 }
 </script>
 
