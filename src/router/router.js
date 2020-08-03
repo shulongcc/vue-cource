@@ -10,7 +10,18 @@ export default [
     // 函数模式传值
     props: route => ({
       food: route.query.food
-    })
+    }),
+    // 路由独享守卫
+    beforeEnter: (to, from, next) => {
+      if (from.name === 'login') alert('这是从登录页跳转过来的')
+      else alert('这不是登录页跳转过来的')
+      next()
+    }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login.vue')
   },
   {
     path: '/about',
@@ -60,5 +71,9 @@ export default [
     //   }
     // }
     redirect: to => '/'
+  },
+  {
+    path: '*',
+    components: () => import('@/views/404.vue')
   }
 ]

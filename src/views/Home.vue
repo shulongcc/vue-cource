@@ -24,6 +24,25 @@ export default {
       default: 'apple'
     }
   },
+  beforeRouteEnter (to, from, next) {
+    // ...to 当前路由， from 上一个路由
+
+    console.log(to.name)
+    console.log(from.name)
+    // next()
+
+    // 获取this
+    next(vm => {
+      console.log(vm)
+    })
+  },
+  beforeRouteLeave (to, from, next) {
+    // ...页面即将离开时调用
+    const leave = confirm('您确定要离开吗')
+    if (leave) {
+      next()
+    } else next(false)
+  },
   methods: {
     handleClick (type) {
       //  go  -1 后退一页 ， 1前进一页
