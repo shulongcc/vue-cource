@@ -30,6 +30,10 @@ export default [
     // 对象模式动态传值
     props: {
       food: 'banana'
+    },
+    // 路由源信息的使用
+    meta: {
+      title: '关于'
     }
   },
   // 动态路由匹配

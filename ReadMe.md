@@ -57,8 +57,44 @@ history 模式， 不带#
 判断是否登录，或者是否有权限
 
 1.全局守卫
-router.beforeEach（（to,from, next）=> {}）
+router.beforeEach((to,from, next)=> {})
 to： 即将跳转到的页面
 from： 函数
 next： 跳转到谁
-2.后置钩子
+
+在路由跳转前触发，也就是路由还没跳转前告知  以免跳转后再通知为时已晚；主要用于登录验证；
+
+2.全局解析守卫
+router.beforeResolve((to,from, next)=> {})
+
+在路由跳转前触发，与beforeEach 不同的是在  beforeEach 和 组件内 beforeRouteEnter之后， afterEach之前
+
+3.全局后置守卫
+route.afterEach((to,from) => {})
+跳转后的钩子,无法阻止跳转
+
+4.路由独享守卫
+beforeEnter: (to, from, next) => {}
+
+5.组件内 
+beforeRouteEnter (to, from, next) => {}
+在渲染该组件德对应路由被 confirm 前调用
+不能获取组件实例 this， 因为当前守卫执行前，组件实例还没被创建，但可以通过 es6 vm 箭头函数获取
+beforeRouteEnter: (to, from, next) {
+  next(vm => {})
+}
+
+beforeRouteUpdate (to, from, next) {}
+在当前路由改变，但是该组件被复用是调用；例/argu/1, /argu/2, 时调用 
+
+beforeRouteLeave (to, from, next) {}
+导航离开该组件时对应路由时调用，例：home.vue
+
+注： 
+1. 但凡存在next参数的钩子，必须调用next() 才能执行跳转
+2. 如果要中断当前的导航要调用next(false) 如果浏览器的URL改变了（可能是用户手动输入地址或点击了后退按钮），那么URL 地址会重置到from 路由对应的地址（主要用于用户登录验证不通过处理）
+3. next('/') 或着 next({path: '/'}) 跳转到一个地址。
+4. 在beforeRouteEnter 钩子中 next(vm => {})内接收的回调参数为当前组件的示例VM，这个回调函数在生命周期mounted之后调用，也就是， 他是所有导航守卫和生命周期函数最后执行的钩子
+5. next(error) ： 如果传入 next的参数是一个 error 实例，则导航会被终止且该错误会被传递给 router.onError 注册过的回调
+
+beforeRouteLeave -> beforeEach -> beforeEnter -> beforeRouteEnter -> beforeResolve -> afterEach -> beforeCreate -> created -> beforeMount -> mounted -> beforeRouteUpdate
