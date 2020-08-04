@@ -1,23 +1,16 @@
 <template>
   <div class="container">
-    I am parent
-    <router-view></router-view>
+    <p>Ashow:  {{content}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'parent',
-  data () {
-    return {
-
+  props: {
+    content: {
+      type: [String, Number],
+      default: ''
     }
-  },
-  methods: {
-
-  },
-  components: {
-
   }
 }
 </script>

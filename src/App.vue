@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link :to="{name: 'About'}">About</router-link>
+      <router-link :to="{name: 'store'}"></router-link>
     </div>
     <!-- 路由过度 -->
     <!-- <transition-group name="router">

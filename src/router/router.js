@@ -77,7 +77,13 @@ export default [
     redirect: to => '/'
   },
   {
+    // 状态管理
+    path: '/store',
+    name: 'store',
+    component: () => import('@/views/store.vue')
+  },
+  {
     path: '*',
-    components: () => import('@/views/404.vue')
+    component: () => import('@/views/404.vue')
   }
 ]

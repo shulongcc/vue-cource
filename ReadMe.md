@@ -98,3 +98,13 @@ beforeRouteLeave (to, from, next) {}
 5. next(error) ： 如果传入 next的参数是一个 error 实例，则导航会被终止且该错误会被传递给 router.onError 注册过的回调
 
 beforeRouteLeave -> beforeEach -> beforeEnter -> beforeRouteEnter -> beforeResolve -> afterEach -> beforeCreate -> created -> beforeMount -> mounted -> beforeRouteUpdate
+
+
+状态管理
+1. 项目简单用Bus
+  lib/bus.js email.vue && tel.vue
+2. VUX
+  vue compontents => Actions => Mutations => state =>  vue compontents
+
+Mutations 中只能进行同步操作
+若需要进行异步操作（请求接口获取值，根据值修改state，需要使用Actions）
