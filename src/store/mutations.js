@@ -9,6 +9,9 @@ const mutations = {
     // state.appVersion = 'v4.0'
     // 在state中未定义的参数，修改后无法触发视图层更新
     vue.set(state, 'appVersion', 'v4.0')
+  },
+  SET_STATE_VALUE (state, value) {
+    state.stateValue = value
   }
 }
 

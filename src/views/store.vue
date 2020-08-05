@@ -1,8 +1,11 @@
 <template>
   <div class="container">
-    <!-- <a-Input v-model="inputValue" /> -->
-    <a-Input @input="handleInput" />
-    <p>{{inputValue}} -> LastLetter is {{inputValueLastLetter}}</p>
+    <a-Input v-model="inputValue" />
+    <!-- <a-Input :value="stateValue" @input="handleStateValueChane" /> -->
+    <a-Input v-model="stateValue"/>
+    <!-- <a-Input @input="handleInput" /> -->
+    <p>inputValue: {{inputValue}} -> LastLetter is {{inputValueLastLetter}}</p>
+    <p>stateValue: {{stateValue}}</p>
     <a-show :content="inputValue" />
     <p>appName: {{appName}}; appNameWithVersion: {{appNameWithVersion}}</p>
     <P>userName: {{userName}}; firstLeeter is {{firstLeeter}}</P>
@@ -46,13 +49,23 @@ export default {
     //   'firstLeeter'
     // ]),
     // 以对象的形式， 未开启命名空间
+
     ...mapState({
       appName: state => state.appName,
-      userName: state => state.user.userNamem,
+      userName: state => state.user.userName,
       // todoList: state => state.todo ? state.todo.todoList : []
       todoList: state => state.user.todo ? state.user.todo.todoList : []
+      // stateValue: state => state.stateValue
     }),
-
+    // 双向绑定Vuex中的数据
+    stateValue: {
+      get () {
+        return this.$store.state.stateValue
+      },
+      set (val) {
+        this.SET_STATE_VALUE(val)
+      }
+    },
     // 开启命名空间 namespaced: true, 方式一
     // ...mapState({
     //   userName: state => state.userName,
@@ -79,7 +92,8 @@ export default {
   methods: {
     ...mapMutations([
       'SET_USER_NAME',
-      'SET_APPNAME'
+      'SET_APPNAME',
+      'SET_STATE_VALUE'
     ]),
     ...mapActions([
       'updateAppName'
@@ -103,8 +117,9 @@ export default {
       this.updateAppName()
     },
     changeUserName () {
-      // this.SET_USER_NAME('vue-cc')
-      this.$store.dispatch('updateAppName', 'vue-cc')
+      // this.$store.state.user.userName = 'vue-cc' 开启严格模式会报错，建议在mutation中进行修改
+      this.SET_USER_NAME('vue-cc')
+      // this.$store.dispatch('updateAppName', 'vue-cc')
     },
     // 动态添加模块
     // registerModule () {
@@ -125,6 +140,9 @@ export default {
           ]
         }
       })
+    },
+    handleStateValueChane (val) {
+      this.SET_STATE_VALUE(val)
     }
   }
 }

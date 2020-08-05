@@ -1,6 +1,7 @@
 const state = {
   // vue 组件中的data
   appName: 'appAdmin',
-  appVersion: ''
+  appVersion: '',
+  stateValue: 'abc'
 }
 export default state

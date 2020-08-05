@@ -13,8 +13,10 @@ const actions = {
   // }
   async updateAppName ({ commit }) {
     try {
-      const { info: { appName } } = await getAppName()
-      commit('SET_APPNAME', appName)
+      // const { info: { appName } } = await getAppName()
+      // commit('SET_APPNAME', appName)
+      const res = await getAppName()
+      commit('SET_APPNAME', res.info.appName)
     } catch (error) {
       console.log(error)
     }
