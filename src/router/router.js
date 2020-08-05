@@ -24,6 +24,11 @@ export default [
     component: () => import('@/views/login.vue')
   },
   {
+    path: '/count_to',
+    name: 'count_to',
+    component: () => import('@/views/count-to.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import('../views/About.vue'),
