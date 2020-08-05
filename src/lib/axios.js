@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { baseURL } from '@/config'
 class HttpRequest {
-  consttructor (baseUrl = baseURL) {
+  constructor (baseUrl = baseURL) {
     this.baseUrl = baseUrl
     // 把请求压入队列，队列中没有请求的话，停止loading
     this.quequ = {}
@@ -34,10 +34,12 @@ class HttpRequest {
     })
     // 响应
     instance.interceptors.response.use(res => {
-      console.log(res)
+      // console.log(res)
       delete this.quequ[url]
-      const { data, status } = res
-      return { data, status }
+      const { data } = res
+      // const { data, status } = res
+      // return { data, status }
+      return { data }
     }, error => {
       delete this.quequ[url]
       return Promise.reject(error)

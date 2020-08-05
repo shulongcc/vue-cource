@@ -13,8 +13,8 @@ export default [
     }),
     // 路由独享守卫
     beforeEnter: (to, from, next) => {
-      if (from.name === 'login') alert('这是从登录页跳转过来的')
-      else alert('这不是登录页跳转过来的')
+      // if (from.name === 'login') alert('这是从登录页跳转过来的')
+      // else alert('这不是登录页跳转过来的')
       next()
     }
   },

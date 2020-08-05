@@ -17,6 +17,6 @@ module.exports = {
   productionSourceMap: false,
   // 代理
   devServer: {
-    proxy: 'http://localhost:3000'
+    proxy: 'http://localhost:8080'
   }
 }
