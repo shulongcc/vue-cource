@@ -108,3 +108,32 @@ beforeRouteLeave -> beforeEach -> beforeEnter -> beforeRouteEnter -> beforeResol
 
 Mutations 中只能进行同步操作
 若需要进行异步操作（请求接口获取值，根据值修改state，需要使用Actions）
+
+跨域
+http:// www.d.com/d.js
+http:// www.d.com/2.js
+同一域名下 允许通信
+
+http:// www.d.com/lib/d.js
+http:// www.d.com/api/2.js
+同一域名不同文件夹下  允许通信
+
+http:// www.d.com:3333/d.js
+http:// www.d.com:8080/2.js
+同一域名不同端口  不允许通信
+
+http:// www.d.com/2.js
+http:// 46.33.22.44/1.js
+域名和ip地址对应  不允许通信
+
+http:// www.d.com/1.js
+http:// scipt.d.com/2.js
+主域相同，子域不同  不允许通信
+
+http:// www.d.com/1.js
+http:// d.com/2.js
+同一域名，不同二级域名 不允许通信
+
+http:// www.d.com/1.js
+http:// www.e.com/b.js
+不同域名  不允许通信
